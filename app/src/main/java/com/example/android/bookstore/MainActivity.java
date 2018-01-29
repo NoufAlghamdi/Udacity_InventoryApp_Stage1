@@ -104,27 +104,29 @@ public class MainActivity extends AppCompatActivity {
             int supplierEmailColumnIndex = cursor.getColumnIndex(ProductInfoEntry.COLUMN_PRODUCT_INFO_SUPPLIES_EMAIL);
             int supplierPhoneNumberColumnIndex = cursor.getColumnIndex(ProductInfoEntry.COLUMN_PRODUCT_INFO_SUPPLIER_PHONE_NUMBER);
 
-            while (cursor.moveToNext()) {
-                int currentId = cursor.getInt(idColumnIndex);
-                String currentBookTitle = cursor.getString(bookTitleColumnIndex);
-                String currentAuthorName = cursor.getString(authorNameColumnIndex);
-                int currentPrice = cursor.getInt(priceColumnIndex);
-                int currentAvailableQuantity = cursor.getInt(availableQuantityColumnIndex);
-                String currentSupplierName = cursor.getString(supplierNameColumnIndex);
-                String currentSupplierEmail = cursor.getString(supplierEmailColumnIndex);
-                String currentSupplierPhoneNumber = cursor.getString(supplierPhoneNumberColumnIndex);
+            if (cursor.moveToFirst()) {
+                do {
+                    int currentId = cursor.getInt(idColumnIndex);
+                    String currentBookTitle = cursor.getString(bookTitleColumnIndex);
+                    String currentAuthorName = cursor.getString(authorNameColumnIndex);
+                    int currentPrice = cursor.getInt(priceColumnIndex);
+                    int currentAvailableQuantity = cursor.getInt(availableQuantityColumnIndex);
+                    String currentSupplierName = cursor.getString(supplierNameColumnIndex);
+                    String currentSupplierEmail = cursor.getString(supplierEmailColumnIndex);
+                    String currentSupplierPhoneNumber = cursor.getString(supplierPhoneNumberColumnIndex);
 
-                Log.i(LOG_TAG, currentId
-                        + "\t" + currentBookTitle
-                        + "\t" + currentAuthorName
-                        + "\t" + currentPrice
-                        + "\t" + currentAvailableQuantity
-                        + "\t" + currentSupplierName
-                        + "\t" + currentSupplierEmail
-                        + "\t" + currentSupplierPhoneNumber
-                );
+                    Log.i(LOG_TAG, currentId
+                            + "\t" + currentBookTitle
+                            + "\t" + currentAuthorName
+                            + "\t" + currentPrice
+                            + "\t" + currentAvailableQuantity
+                            + "\t" + currentSupplierName
+                            + "\t" + currentSupplierEmail
+                            + "\t" + currentSupplierPhoneNumber
+                    );
+                } while (cursor.moveToNext());
             }
-        } finally {
+        }finally {
             cursor.close();
         }
     }
